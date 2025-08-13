@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Em Construção</title>
+    <!-- Carrega o Tailwind CSS para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a fonte Inter como padrão para o corpo do documento */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Cor de fundo suave */
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full text-center">
+        <!-- Ícone de construção (pode ser um emoji ou SVG simples) -->
+        <div class="text-6xl mb-6 animate-bounce" role="img" aria-label="Em Construção">
+            🚧
+        </div>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Estamos Construindo Algo Incrível!</h1>
+        <p class="text-gray-600 mb-6">
+            Esta página está em construção e logo estará disponível. Estamos trabalhando para trazer novidades!
+        </p>
+        <p class="text-sm text-gray-500">
+            Agradecemos a sua paciência. Volte em breve!
+        </p>
+        <div class="mt-8 text-gray-400 text-xs" id="timestamp">
+            <!-- O JavaScript irá inserir o timestamp aqui -->
+        </div>
+        <div class="mt-2 text-gray-400 text-xs" id="network-status">
+            <!-- O JavaScript irá inserir o status da rede aqui -->
+        </div>
+    </div>
+
+    <script>
+        // Adiciona um timestamp para mostrar quando a página foi carregada
+        document.addEventListener('DOMContentLoaded', () => {
+            const timestampElement = document.getElementById('timestamp');
+            const now = new Date();
+            timestampElement.textContent = `Carregado em: ${now.toLocaleDateString('pt-BR')} ${now.toLocaleTimeString('pt-BR')}`;
+
+            // Verifica e exibe o status da conexão de rede
+            const networkStatusElement = document.getElementById('network-status');
+            function updateNetworkStatus() {
+                if (navigator.onLine) {
+                    networkStatusElement.textContent = 'Status da Rede: Online';
+                    networkStatusElement.classList.remove('text-red-500');
+                    networkStatusElement.classList.add('text-green-500');
+                } else {
+                    networkStatusElement.textContent = 'Status da Rede: Offline';
+                    networkStatusElement.classList.remove('text-green-500');
+                    networkStatusElement.classList.add('text-red-500');
+                }
+            }
+
+            // Atualiza o status inicialmente e em caso de mudança na conexão
+            updateNetworkStatus();
+            window.addEventListener('online', updateNetworkStatus);
+            window.addEventListener('offline', updateNetworkStatus);
+        });
+    </script>
+</body>
+</html>
